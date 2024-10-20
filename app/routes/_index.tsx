@@ -1,4 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
+import { Link } from "@remix-run/react";
+import React from "react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -8,19 +10,35 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
+  const [view, setView] = React.useState("list");
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="flex flex-col items-center gap-16">
         <header className="flex flex-col items-center gap-9">
           <h1 className="leading text-2xl font-bold text-gray-800 dark:text-gray-100">
-            Welcome to <span className="sr-only">Remix</span>
+            Welcome to WOrlDo Remixes<span className="sr-only">Remix</span>
           </h1>
+          <div>
+      <div>
+        <button onClick={() => setView("list")}>
+          View as List
+        </button>
+        <button onClick={() => setView("details")}>
+          View with Details
+        </button>
+   
+      </div>
+
+    </div>
+          <div className="text-yellow-200 bg-slate-500">This is tailwind test</div>
+          <Link to="/dashboard">to Dashboard</Link>
           <div className="h-[144px] w-[434px]">
             <img
               src="/logo-light.png"
               alt="Remix"
               className="block w-full dark:hidden"
             />
+                 <h1>{view}</h1>
             <img
               src="/logo-dark.png"
               alt="Remix"
